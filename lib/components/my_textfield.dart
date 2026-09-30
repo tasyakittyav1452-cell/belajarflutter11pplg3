@@ -5,26 +5,31 @@ class MyTextfield extends StatelessWidget {
   final String myHint;
   final TextEditingController txtController;
   final double radius;
+  final TextInputType? keyboardType;
+  final List<TextInputFormatter>? inputFormatters;
 
   const MyTextfield({
     super.key,
     required this.myHint,
     required this.txtController,
-    required this.radius,
+    this.radius = 10,
+    this.keyboardType,
+    this.inputFormatters,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: txtController, //menghubungkan inputan text
-      keyboardType: const TextInputType.numberWithOptions(decimal: true),
-      inputFormatters: [
-        FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-      ],
+      controller: txtController,
+      inputFormatters: inputFormatters,
       decoration: InputDecoration(
-        hint: Text(myHint),
+        hintText: myHint,
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(radius),
+          borderRadius: BorderRadius.circular(radius),
+        ),
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 12,
         ),
       ),
     );
