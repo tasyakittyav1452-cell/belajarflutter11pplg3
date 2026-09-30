@@ -21,6 +21,7 @@ class MyTextfield extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: txtController,
+      keyboardType: keyboardType,
       inputFormatters: inputFormatters,
       decoration: InputDecoration(
         hintText: myHint,

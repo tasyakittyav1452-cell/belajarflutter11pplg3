@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_application_1/components/my_textfield.dart';
 import 'package:flutter_application_1/routes.dart';
 import 'package:flutter/material.dart';
@@ -23,10 +24,45 @@ class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Registration"),
-        backgroundColor: Colors.blueAccent,
-        foregroundColor: Colors.white,
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+              Colors.cyanAccent.withOpacity(0.8),
+              Colors.blue.withOpacity(0.6),
+              Colors.cyan.withOpacity(0.9),
+            ],
+            begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+          ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.cyanAccent.withOpacity(0.5),
+                  blurRadius: 10.0,
+                spreadRadius: 2.0
+              ),
+            ],
+            border: Border(
+              bottom: BorderSide(
+                color: Colors.white.withOpacity(0.5),
+                width: 1.5,
+              ),
+            ),
+        ),
+          child: AppBar(
+            title: const Text("Registration",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.2,
+            ),
+            ),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            foregroundColor: Colors.white,
+          ),
+      ),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -70,7 +106,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
             const SizedBox(height: 12),
             MyTextfield(myHint: "Input Alamat", txtController: txtAlamat, radius: 10),
             const SizedBox(height: 12),
-            MyTextfield(myHint: "Input No WA", txtController: txtNoWa, radius: 10, keyboardType: TextInputType.number),
+            MyTextfield(myHint: "Input No WA", txtController: txtNoWa, radius: 10, keyboardType: TextInputType.number, inputFormatters: [FilteringTextInputFormatter.digitsOnly],),
             const SizedBox(height: 12),
             MyTextfield(myHint: "Input Email", txtController: txtEmail, radius: 10),
             const SizedBox(height: 12),
@@ -82,7 +118,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               height: 50,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blueAccent,
+                  backgroundColor: Colors.green,
                   foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
